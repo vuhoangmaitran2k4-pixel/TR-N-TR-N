@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 02 - Todo Matrix</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="todo-page">
+    <div class="todo-layout">
+        <!-- Cột Trái: Info -->
+        <aside class="sidebar">
+            <a href="index.html" class="back-link-light">← Trang chủ</a>
+            <div class="student-info">
+                <img src="Image/1.jfif" alt="Avatar" class="avatar-small" onerror="this.src='Image'">
+                <h3>Vũ Hoàng Mai Trân</h3>
+                <p>MSSV: 221A011180<span id="displayMssv">...</span></p>
+            </div>
+        </aside>
+
+        <!-- Cột Phải: Task Board -->
+        <main class="board">
+            <div class="input-section">
+                <input type="text" id="taskInput" placeholder="Nhập tên công việc...">
+                <select id="priorityInput">
+                    <option value="1">1. Quan trọng & Khẩn cấp</option>
+                    <option value="2">2. Quan trọng & Không khẩn</option>
+                    <option value="3">3. Không quan trọng & Khẩn</option>
+                    <option value="4">4. Không quan trọng & Không khẩn</option>
+                </select>
+                <button id="btnAdd" class="btn-add">Thêm Mới</button>
+            </div>
+
+            <!-- Ma Trận Eisenhower -->
+            <div class="matrix-grid">
+                <!-- Ô 1 -->
+                <div class="quadrant q1">
+                    <h4 class="q-header">Làm Ngay (Q1)</h4>
+                    <div class="task-list" id="list-1"></div>
+                </div>
+                <!-- Ô 2 -->
+                <div class="quadrant q2">
+                    <h4 class="q-header">Lên Lịch (Q2)</h4>
+                    <div class="task-list" id="list-2"></div>
+                </div>
+                <!-- Ô 3 -->
+                <div class="quadrant q3">
+                    <h4 class="q-header">Ủy Quyền (Q3)</h4>
+                    <div class="task-list" id="list-3"></div>
+                </div>
+                <!-- Ô 4 -->
+                <div class="quadrant q4">
+                    <h4 class="q-header">Loại Bỏ (Q4)</h4>
+                    <div class="task-list" id="list-4"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

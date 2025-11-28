@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 01 - Booking System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="movie-booking-page">
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link">← Về trang chủ</a>
+            <h1>RẠP CHIẾU PHIM STAR</h1>
+        </header>
+
+        <!-- Chú thích -->
+        <ul class="legend">
+            <li><div class="seat-demo standard"></div> Thường (50k)</li>
+            <li><div class="seat-demo vip"></div> VIP (80k)</li>
+            <li><div class="seat-demo couple"></div> Couple (150k)</li>
+            <li><div class="seat-demo selected"></div> Đang chọn</li>
+            <li><div class="seat-demo booked"></div> Đã bán</li>
+        </ul>
+
+        <!-- Màn hình chiếu -->
+        <div class="screen-container">
+            <div class="screen"></div>
+            <p>Màn hình</p>
+        </div>
+
+        <!-- Khu vực ghế (Render bằng JS) -->
+        <div class="seat-map" id="seatContainer"></div>
+
+        <!-- Thông tin thanh toán -->
+        <div class="booking-info">
+            <p>Số ghế: <span id="count">0</span> | Tổng tiền: <span id="total">0</span> đ</p>
+            <button id="btnCheckout" class="btn-primary">Thanh Toán</button>
+        </div>
+    </div>
+
+    <!-- Modal Thanh Toán -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Xác Nhận Đặt Vé</h2>
+            <div id="ticketDetails"></div>
+            <hr>
+            <button class="btn-primary" onclick="alert('Đặt vé thành công!'); location.reload();">Xác Nhận</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

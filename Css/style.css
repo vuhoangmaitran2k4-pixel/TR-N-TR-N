@@ -1,0 +1,214 @@
+/* --- RESET & GLOBAL --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+    line-height: 1.6; 
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; }
+button { font-family: inherit; }
+
+/* --- TRANG CHỦ (index.html) --- */
+.home-container {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    height: 100vh; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+.profile-card {
+    background: white; padding: 50px; border-radius: 20px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center; margin-bottom: 30px;
+    width: 90%; max-width: 400px;
+    transition: transform 0.3s ease;
+}
+.profile-card:hover { transform: translateY(-5px); }
+.avatar-home { 
+    width: 150px; height: 150px; border-radius: 50%; object-fit: cover; 
+    margin-bottom: 20px; border: 5px solid #3498db; 
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+.profile-card h1 { font-size: 1.5rem; margin-bottom: 5px; color: #2c3e50; }
+.profile-card p { color: #7f8c8d; font-size: 1rem; }
+
+.nav-buttons { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;}
+.btn { 
+    padding: 12px 25px; background: linear-gradient(to right, #3498db, #2980b9); 
+    color: white; border-radius: 50px; font-weight: 600; 
+    transition: all 0.3s ease; 
+    box-shadow: 0 4px 15px rgba(41, 128, 185, 0.3);
+}
+.btn:hover { 
+    background: linear-gradient(to right, #2980b9, #3498db); 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(41, 128, 185, 0.4);
+}
+
+/* --- BÀI 01: BOOKING SYSTEM --- */
+.movie-booking-page { 
+    background-color: #1f2029; color: #e0e0e0; 
+    display: flex; flex-direction: column; align-items: center; 
+    min-height: 100vh; padding-top: 30px;
+    font-family: 'Montserrat', sans-serif;
+}
+.movie-booking-page .back-link { 
+    color: #aaa; position: absolute; top: 25px; left: 25px; 
+    font-size: 0.9rem; transition: color 0.3s;
+}
+.movie-booking-page .back-link:hover { color: #fff; }
+.movie-booking-page h1 { margin-bottom: 20px; letter-spacing: 1px; }
+
+/* Màn hình */
+.screen-container { perspective: 1000px; margin-bottom: 40px; text-align: center; width: 100%; display: flex; flex-direction: column; align-items: center;}
+.screen {
+    background: #fff; height: 80px; width: 320px; margin: 0 auto 20px;
+    transform: rotateX(-45deg); 
+    box-shadow: 0 30px 60px rgba(255,255,255,0.6);
+    border-radius: 10px;
+}
+
+/* Chú thích */
+.legend { 
+    display: flex; gap: 20px; list-style: none; 
+    background: rgba(255,255,255,0.05); padding: 12px 25px; 
+    border-radius: 50px; margin-bottom: 30px;
+}
+.legend li { display: flex; align-items: center; font-size: 13px; color: #ccc;}
+.seat-demo { width: 20px; height: 20px; margin-right: 8px; border-radius: 4px; }
+
+/* Lưới ghế */
+.seat-map { 
+    display: grid; grid-template-columns: repeat(8, 40px); gap: 12px; margin-bottom: 30px; 
+}
+.seat {
+    width: 40px; height: 35px; background: #444451;
+    border-top-left-radius: 8px; border-top-right-radius: 8px; 
+    border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;
+    cursor: pointer; transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    position: relative;
+}
+.seat:hover:not(.booked) { transform: scale(1.15); box-shadow: 0 5px 10px rgba(0,0,0,0.5); }
+.seat.standard { background: #444451; }
+.seat.vip { background: #e67e22; }
+.seat.couple { background: #e91e63; } 
+.seat.selected { background: #6feaf6; box-shadow: 0 0 10px #6feaf6; }
+.seat.booked { background: #ffffff; opacity: 0.2; cursor: not-allowed; }
+
+.booking-info { 
+    background: rgba(255,255,255,0.1); padding: 20px; 
+    border-radius: 12px; width: 320px; text-align: center; 
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.btn-primary { 
+    background: linear-gradient(135deg, #2ecc71, #27ae60); 
+    border: none; padding: 12px 0; color: white; cursor: pointer; 
+    border-radius: 6px; margin-top: 15px; font-size: 16px; font-weight: bold; width: 100%;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
+}
+.btn-primary:active { transform: scale(0.98); }
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(3px); }
+.modal-content { 
+    background: #fefefe; color: #333; margin: 10% auto; padding: 30px; 
+    width: 90%; max-width: 450px; border-radius: 15px; position: relative; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+.close-modal { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #aaa; transition: 0.2s;}
+.close-modal:hover { color: #333; }
+
+/* --- BÀI 02: TODO MATRIX --- */
+.todo-page { background: #f0f2f5; height: 100vh; overflow: hidden; color: #333; }
+.todo-layout { display: flex; height: 100%; }
+
+/* Sidebar */
+.sidebar { 
+    width: 280px; background: #2c3e50; color: white; padding: 30px 20px; 
+    display: flex; flex-direction: column; align-items: center; 
+    box-shadow: 4px 0 15px rgba(0,0,0,0.1); z-index: 2;
+}
+.back-link-light { color: #bdc3c7; align-self: flex-start; margin-bottom: 30px; font-size: 14px; display: flex; align-items: center; gap: 5px; transition: 0.2s;}
+.back-link-light:hover { color: #fff; }
+.avatar-small { 
+    width: 120px; height: 120px; border-radius: 50%; 
+    border: 4px solid rgba(255,255,255,0.2); margin-bottom: 20px; object-fit: cover; 
+}
+.student-info { text-align: center; }
+.student-info h3 { font-size: 1.2rem; margin-bottom: 5px; }
+.student-info p { color: #bdc3c7; font-size: 0.9rem; }
+
+/* Main Board */
+.board { flex: 1; padding: 30px; display: flex; flex-direction: column; overflow-y: auto; background-color: #ecf0f1; }
+.input-section { 
+    background: white; padding: 20px 25px; border-radius: 12px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; gap: 15px; 
+    margin-bottom: 25px; flex-wrap: wrap; align-items: center;
+}
+.input-section input { flex: 2; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; outline: none; transition: 0.2s; }
+.input-section input:focus { border-color: #3498db; }
+.input-section select { flex: 1; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; outline: none; min-width: 200px; cursor: pointer;}
+.btn-add { 
+    background: #3498db; color: white; border: none; padding: 12px 25px; 
+    border-radius: 8px; cursor: pointer; font-weight: 600; box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3); transition: 0.2s;
+}
+.btn-add:hover { background: #2980b9; transform: translateY(-1px); }
+
+/* Matrix Grid */
+.matrix-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 25px; flex: 1; min-height: 500px; }
+.quadrant { 
+    background: white; border-radius: 12px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
+    display: flex; flex-direction: column; 
+    border-top: 6px solid #ccc; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.quadrant:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+
+.q1 { border-color: #e74c3c; } /* Đỏ */
+.q1 .q-header { background-color: rgba(231, 76, 60, 0.05); color: #c0392b; }
+.q2 { border-color: #f1c40f; } /* Vàng */
+.q2 .q-header { background-color: rgba(241, 196, 15, 0.05); color: #d35400; }
+.q3 { border-color: #3498db; } /* Xanh */
+.q3 .q-header { background-color: rgba(52, 152, 219, 0.05); color: #2980b9; }
+.q4 { border-color: #2ecc71; } /* Lá */
+.q4 .q-header { background-color: rgba(46, 204, 113, 0.05); color: #27ae60; }
+
+.q-header { 
+    padding: 15px 20px; border-bottom: 1px solid #f0f0f0; 
+    font-weight: 700; font-size: 1rem; letter-spacing: 0.5px; 
+    border-radius: 12px 12px 0 0;
+}
+.task-list { padding: 15px; flex: 1; overflow-y: auto; }
+
+/* Task Item */
+.task-item { 
+    padding: 10px 15px; border-bottom: 1px solid #f5f5f5; 
+    display: flex; justify-content: space-between; align-items: center; 
+    font-size: 14px; background: #fff; margin-bottom: 5px; border-radius: 6px;
+    transition: background 0.2s;
+}
+.task-item:hover { background: #f9f9f9; }
+.task-item:last-child { border-bottom: none; }
+.btn-del { 
+    color: #e74c3c; cursor: pointer; font-weight: bold; 
+    padding: 4px 8px; border-radius: 4px; transition: 0.2s; 
+}
+.btn-del:hover { background: rgba(231, 76, 60, 0.1); }
+
+/* Responsive Mobile cho Bài 2 */
+@media (max-width: 768px) {
+    .todo-layout { flex-direction: column; overflow-y: auto; }
+    .sidebar { width: 100%; flex-direction: row; gap: 20px; height: auto; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .avatar-small { width: 60px; height: 60px; margin: 0; }
+    .student-info { text-align: left; }
+    .board { padding: 15px; background: #f4f4f9; }
+    .input-section { flex-direction: column; align-items: stretch; gap: 10px; }
+    .input-section select { min-width: auto; }
+    .matrix-grid { grid-template-columns: 1fr; gap: 20px; } 
+    .quadrant { min-height: 200px; }
+    .todo-page { overflow: auto; height: auto; }
+}
